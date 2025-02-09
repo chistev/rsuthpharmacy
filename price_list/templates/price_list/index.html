@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RSUTHPHARMACY PRICE LIST</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet"> <!-- Bootstrap Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
   <style>
     .navbar {
       background-color: #232f3e;
@@ -23,7 +23,7 @@
     .search-input {
       border-radius: 0;
       border-right: none;
-      width: 250px; /* Set a max width for the input */
+      width: 250px;
     }
     .search-btn {
       background-color: #febd69;
@@ -35,11 +35,24 @@
     .search-btn i {
       font-size: 16px;
     }
-
-    /* Logo Styling */
     .navbar-logo {
-      max-height: 40px; /* Adjust the height of the logo */
-      margin-right: 10px; /* Add some spacing between the logo and the text */
+      max-height: 40px;
+      margin-right: 10px;
+    }
+
+    /* New Section Styling */
+    .sub-nav {
+      background-color: #37475a;
+      padding: 10px 15px;
+    }
+    .sub-nav a {
+      color: #ddd;
+      margin-right: 15px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .sub-nav a:hover {
+      color: white;
     }
 
     @media (max-width: 767px) {
@@ -55,6 +68,13 @@
         flex-direction: column;
         align-items: stretch;
       }
+      .sub-nav {
+        text-align: center;
+      }
+      .sub-nav a {
+        display: block;
+        margin: 5px 0;
+      }
     }
   </style>
 </head>
@@ -62,7 +82,6 @@
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center" href="#">
-        
         <img src="{% static 'images/logo.jpeg' %}" alt="Logo" class="navbar-logo">
         <strong>RSUTHPHARMACY</strong>
       </a>
@@ -80,6 +99,15 @@
       </form>
     </div>
   </nav>
+
+  <!-- New Section Below Navbar -->
+  <div class="sub-nav">
+    <a href="#">Today’s Deals</a>
+    <a href="#">Customer Service</a>
+    <a href="#">Registry</a>
+    <a href="#">Gift Cards</a>
+    <a href="#">Sell</a>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
