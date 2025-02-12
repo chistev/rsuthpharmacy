@@ -20,12 +20,9 @@
       <form class="d-flex search-bar">
         <select class="form-select search-input" style="max-width: 120px;">
           <option selected>All</option>
-          <option value="1">Tablets/Capsules</option>
-          <option value="2">Injectables</option>
-          <option value="3">Infusions</option>
-          <option value="4">Cold Chain</option>
-          <option value="5">Consumables</option>
-          <option value="5">Others</option>
+          {% for category in categories %}
+    <option value="{{ category.slug }}">{{ category.name }}</option>
+  {% endfor %}
         </select>
         <input class="form-control search-input" type="search" placeholder="Search Drugs" aria-label="Search">
         <button class="btn search-btn" type="submit">
