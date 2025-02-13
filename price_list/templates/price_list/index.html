@@ -2,72 +2,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RSUTHPHARMACY PRICE LIST</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSUTHPHARMACY PRICE LIST</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="{% static 'images/logo.jpeg' %}" alt="Logo" class="navbar-logo">
-        <strong>RSUTHPHARMACY</strong>
-      </a>
-      <form class="d-flex search-bar">
-        <select class="form-select search-input" style="max-width: 120px;">
-          <option selected>All</option>
-          {% for category in categories %}
-    <option value="{{ category.slug }}">{{ category.name }}</option>
-  {% endfor %}
-        </select>
-        <input class="form-control search-input" type="search" placeholder="Search Drugs" aria-label="Search">
-        <button class="btn search-btn" type="submit">
-          <i class="bi bi-search"></i>
-        </button>
-      </form>
-    </div>
-  </nav>
-
-  <!-- New Section Below Navbar -->
-  <div class="sub-nav">
-    {% for category in categories %}
-    <a href="#">{{ category.name }}</a>
-  {% endfor %}
-  </div>
-
-  <div class="container mt-4">
-    <h2 class="mb-4">Tablets/Capsules</h2>
-    <div class="row">
-      {% for product in products %}
-      <!-- Product 1 -->
-      <div class="col-6 col-md-3 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.brand_name }}</h5>
-            <p class="card-text"><strong>{{ product.generic_name }}</strong></p>
-
-            {% if product.price_per_unit %}
-            <p class="card-text"><strong>N{{ product.price }}/tab</strong></p>
-            {% else %}
-            <p class="card-text"><strong>{{ product.price }}</strong></p>
-            {% endif %}
-
-            {% if product.is_out_of_stock %}
-            <p class="text-danger">Out of stock in store</p>
-            {% else %}
-            {% if product.quantity_available %}
-            <p class="text-muted">{{ product.quantity_available }} remaining in store</p>
-            {% endif %}
-            {% endif %}
-          </div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="{% static 'images/logo.jpeg' %}" alt="Logo" class="navbar-logo">
+                <strong>RSUTHPHARMACY</strong>
+            </a>
+            <form class="d-flex search-bar">
+                <select class="form-select search-input" style="max-width: 120px;">
+                    <option selected>All</option>
+                    {% for category in categories %}
+                        <option value="{{ category.slug }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <input class="form-control search-input" type="search" placeholder="Search Drugs" aria-label="Search">
+                <button class="btn search-btn" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
         </div>
-      </div>
-      {% endfor %}
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    </nav>
+
+    <!-- New Section Below Navbar -->
+    <div class="sub-nav">
+        {% for category in categories %}
+            <a href="#">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+
+    <div class="container mt-4">
+        <h2 class="mb-4">Tablets/Capsules</h2>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-6 col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {% if product.brand_name %}
+                                {{ product.brand_name }}
+                            {% endif %}
+                        </h5>
+                        <p class="card-text">
+                            {% if product.generic_name %}
+                                <strong>{{ product.generic_name }}</strong>
+                            {% endif %}
+                        </p>
+
+                        {% if product.price_per_unit %}
+                            <p class="card-text"><strong>N{{ product.price }}/tab</strong></p>
+                        {% else %}
+                            <p class="card-text"><strong>{{ product.price }}</strong></p>
+                        {% endif %}
+
+                        {% if product.is_out_of_stock %}
+                            <p class="text-danger">Out of stock in store</p>
+                        {% else %}
+                            {% if product.quantity_available %}
+                                <p class="text-muted">{{ product.quantity_available }} remaining in store</p>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
