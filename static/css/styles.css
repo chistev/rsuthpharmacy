@@ -48,6 +48,35 @@
       color: white;
     }
 
+    .pagination {
+      display: flex;
+      justify-content: center;
+      padding-top: 20px;
+  }
+  
+  .pagination .page-item {
+      margin: 2px;
+  }
+  
+  .pagination .page-link {
+      color: #232f3e;
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      border-radius: 4px;
+  }
+  
+  .pagination .page-item.active .page-link {
+      background-color: #232f3e;
+      color: white;
+      border: 1px solid #232f3e;
+  }
+  
+  .pagination .page-item.disabled .page-link {
+      color: #999;
+      background-color: #f8f9fa;
+  }
+  
+
     @media (max-width: 767px) {
         .search-bar {
           flex-direction: row;
