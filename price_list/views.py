@@ -3,7 +3,7 @@ from django.shortcuts import render
 from price_list.models import Category, Product
 
 def index(request):
-    categories = list(Category.objects.all())
+    categories = list(Category.objects.all().order_by("name"))
 
     # Move "Others" category to the end
     others_category = next((c for c in categories if c.name.lower() == "others"), None)
@@ -15,9 +15,9 @@ def index(request):
 
     if selected_category_slug:
         category = Category.objects.get(slug=selected_category_slug)
-        products = Product.objects.filter(category=category)
+        products = Product.objects.filter(category=category).order_by("brand_name", "generic_name")
     else:
-        products = Product.objects.all()
+        products = Product.objects.all().order_by("brand_name", "generic_name")
 
     # Pagination: Show 40 products per page
     paginator = Paginator(products, 40)

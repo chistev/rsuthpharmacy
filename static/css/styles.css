@@ -115,6 +115,15 @@ body {
 #back-to-top:hover {
     background-color: #37475a;
 }
+footer {
+  background-color: #232f3e;
+  color: white;
+  padding: 1px 0;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
 
 footer a {
   text-decoration: underline;
@@ -157,4 +166,15 @@ footer a:hover {
   width: 100%;
   z-index: 999;
         }
+
+        footer {
+          background-color: #232f3e;
+          color: white;
+          padding: 0 0;
+          text-align: center;
+          position: relative;
+          bottom: 0;
+          width: 100%;
+        }
+        
       }
