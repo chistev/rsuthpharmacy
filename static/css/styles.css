@@ -1,5 +1,13 @@
-    .navbar {
+body {
+  padding-top: 100px;
+}
+
+.navbar {
       background-color: #232f3e;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     }
     .navbar a,
     .navbar span {
@@ -30,12 +38,17 @@
       margin-right: 10px;
     }
 
-    /* New Section Styling */
     .sub-nav {
       background-color: #37475a;
-      padding: 10px;
-      display: flex;
-      flex-wrap: wrap;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 56px;
+  width: 100%;
+  z-index: 999;
+  overflow-x: auto;
+  white-space: nowrap;
     }
     .sub-nav a {
       color: #ddd;
@@ -46,6 +59,10 @@
     }
     .sub-nav a:hover {
       color: white;
+    }
+
+    .container {
+      margin-top: 100px;
     }
 
     .pagination {
@@ -113,6 +130,10 @@ footer a:hover {
   
 
     @media (max-width: 767px) {
+      body {
+        padding-top: 150px;
+      }
+      
         .search-bar {
           flex-direction: row;
           align-items: center;
@@ -131,5 +152,9 @@ footer a:hover {
         .sub-nav {
           justify-content: flex-start;
           overflow-x: auto;
+          position: fixed;
+  top: 100px;
+  width: 100%;
+  z-index: 999;
         }
       }
