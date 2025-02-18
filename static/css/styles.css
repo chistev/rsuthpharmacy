@@ -99,6 +99,17 @@
     background-color: #37475a;
 }
 
+footer a {
+  text-decoration: underline;
+  color: #ffffff;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+footer a:hover {
+  color: #febd69;
+  text-decoration: underline;
+}
+
   
 
     @media (max-width: 767px) {
