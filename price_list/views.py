@@ -3,7 +3,7 @@ from django.shortcuts import render
 from price_list.models import Category, Product
 
 def index(request):
-    categories = list(Category.objects.all().order_by("name"))
+    categories = list(Category.objects.all())
 
     # Move "Others" category to the end
     others_category = next((c for c in categories if c.name.lower() == "others"), None)
