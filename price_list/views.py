@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from price_list.models import Category, Product
 
 def index(request, category_slug=None):
@@ -11,18 +12,22 @@ def index(request, category_slug=None):
         categories.remove(others_category)
         categories.append(others_category)
 
-    selected_category_slug = category_slug or request.GET.get('category', None)
+    selected_category_slug = request.GET.get('category', None) or category_slug
+    search_query = request.GET.get('search', '')
 
-    # Fetch the selected category or default to "Tablets/Capsules" category
     selected_category = None
-    if selected_category_slug:
-        selected_category = get_object_or_404(Category, slug=selected_category_slug)
-        products = Product.objects.filter(category=selected_category).order_by("brand_name", "generic_name")
-    else:
-        # If no category is selected, show all products
-        products = Product.objects.all().order_by("brand_name", "generic_name")
+    products = Product.objects.all().order_by("brand_name", "generic_name")
 
-    # Pagination: Show 40 products per page
+    if selected_category_slug and selected_category_slug != "all":
+        selected_category = get_object_or_404(Category, slug=selected_category_slug)
+        products = products.filter(category=selected_category)
+
+    if search_query:
+        products = products.filter(
+            Q(brand_name__icontains=search_query) |
+            Q(generic_name__icontains=search_query)
+        )
+
     paginator = Paginator(products, 40)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -31,4 +36,5 @@ def index(request, category_slug=None):
         'categories': categories,
         'page_obj': page_obj,
         'selected_category': selected_category,
+        'search_query': search_query,
     })

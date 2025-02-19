@@ -16,14 +16,16 @@
                 <img src="{% static 'images/logo.jpeg' %}" alt="Logo" class="navbar-logo">
                 <strong>RSUTHPHARMACY</strong>
             </a>
-            <form class="d-flex search-bar">
-                <select class="form-select search-input" style="max-width: 120px;">
-                    <option selected>All</option>
+            <form class="d-flex search-bar" method="GET" action="{% url 'index' %}">
+                <select class="form-select search-input" name="category" style="max-width: 120px;">
+                    <option value="all" {% if not selected_category %}selected{% endif %}>All</option>
                     {% for category in categories %}
-                        <option value="{{ category.slug }}">{{ category.name }}</option>
+                        <option value="{{ category.slug }}" {% if selected_category and selected_category.slug == category.slug %}selected{% endif %}>
+                            {{ category.name }}
+                        </option>
                     {% endfor %}
                 </select>
-                <input class="form-control search-input" type="search" placeholder="Search Drugs" aria-label="Search">
+                <input class="form-control search-input" type="search" name="search" placeholder="Search Drugs" value="{{ search_query }}" aria-label="Search">
                 <button class="btn search-btn" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
@@ -64,10 +66,14 @@
                         </p>
 
                         {% if product.price_per_unit %}
-                            <p class="card-text"><strong>N{{ product.price }}/tab</strong></p>
+                            <p class="card-text"><strong>N{{ product.price }}/1</strong></p>
                         {% else %}
                             <p class="card-text"><strong>N{{ product.price }}</strong></p>
                         {% endif %}
+
+                        {% if search_query %}  {# Show category name only if a search was performed #}
+                        <p class="text-muted">Category: {{ product.category.name }}</p>
+                    {% endif %}
 
                         {% if product.is_out_of_stock %}
                             <p class="text-danger">Out of stock in store</p>
