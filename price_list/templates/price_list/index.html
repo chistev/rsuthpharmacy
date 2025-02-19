@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center" href="/">
                 <img src="{% static 'images/logo.jpeg' %}" alt="Logo" class="navbar-logo">
                 <strong>RSUTHPHARMACY</strong>
             </a>
@@ -33,12 +33,16 @@
 
     <div class="sub-nav">
         {% for category in categories %}
-            <a href="#">{{ category.name }}</a>
+        <a href="{% url 'category_detail' category.slug %}">{{ category.name }}</a>
         {% endfor %}
     </div>
 
     <div class="container mt-4">
-        <h2 class="mb-4">Tablets/Capsules</h2>
+        {% if selected_category %}
+        <h2 class="mb-4">{{ selected_category.name }}</h2>
+    {% else %}
+        <h2 class="mb-4">All Products</h2>
+    {% endif %}
         <div class="row">
             {% for product in page_obj %}
             <div class="col-6 col-md-3 mb-4">
