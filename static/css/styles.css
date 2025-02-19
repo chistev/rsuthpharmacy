@@ -69,6 +69,13 @@ body {
   color: white;
 }
 
+.sub-nav a.active {
+  color: white;
+  font-weight: bold;
+  border-bottom: 2px solid #febd69;
+}
+
+
 .container {
   margin-top: 100px;
 }

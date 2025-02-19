@@ -33,10 +33,14 @@
 
     <div class="sub-nav">
         {% for category in categories %}
-        <a href="{% url 'category_detail' category.slug %}">{{ category.name }}</a>
+            <a href="{% url 'category_detail' category.slug %}"
+               {% if selected_category and selected_category.slug == category.slug %}
+                   class="active"  <!-- Add an active class to the selected category -->
+               {% endif %}
+            >{{ category.name }}</a>
         {% endfor %}
     </div>
-
+    
     <div class="container mt-4">
         {% if selected_category %}
         <h2 class="mb-4">{{ selected_category.name }}</h2>
