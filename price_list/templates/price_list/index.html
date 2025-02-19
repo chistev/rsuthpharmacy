@@ -49,6 +49,8 @@
     {% else %}
         <h2 class="mb-4">All Products</h2>
     {% endif %}
+
+    {% if page_obj %}
         <div class="row">
             {% for product in page_obj %}
             <div class="col-6 col-md-3 mb-4">
@@ -87,6 +89,9 @@
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <p class="text-center text-muted">No products found matching your search.</p>
+    {% endif %}
 
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
